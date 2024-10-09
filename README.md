@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SpectralVision 🎃👻
 
-## Getting Started
+**SpectralVision** es una aplicación creada con motivo del hackathon de Cloudinary con temática de Halloween. Esta aplicación permite a los usuarios capturar imágenes de su entorno y, mediante efectos visuales, simular la detección de presencias malignas ocultas en el ambiente. ¡Prepárate para una experiencia aterradora!
 
-First, run the development server:
+## Descripción
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+En **SpectralVision**, el usuario toma una foto usando la cámara de su dispositivo, y la app genera una imagen aterradora que simula la presencia de fantasmas, sombras o figuras paranormales en el entorno. Aprovechamos las capacidades de transformación de imágenes de Cloudinary para aplicar efectos escalofriantes.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Características
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Captura de fotos usando la cámara del dispositivo.
+- Efectos visuales y paranormales aplicados mediante Cloudinary.
+- Simulación de detección de presencias malignas en las imágenes.
+- Interfaz interactiva y dinámica para una experiencia inmersiva.
+- Opción para compartir las imágenes malditas en redes sociales.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tecnologías Utilizadas
 
-## Learn More
+- **Next.js** (App Router)
+- **Cloudinary** (Almacenamiento y procesamiento de imágenes)
+- **React** (Interfaz de usuario)
+- **JavaScript/TypeScript** (Lógica del proyecto)
+- **CSS/Tailwind** (Estilos)
 
-To learn more about Next.js, take a look at the following resources:
+## Instalación
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clona este repositorio:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   git clone https://github.com/tu-usuario/spectralvision.git
+   cd spectralvision
