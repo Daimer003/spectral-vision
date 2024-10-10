@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import img from "@/app/assets/bg2.png";
+import { Button } from "@chakra-ui/react";
 
 export default function Home() {
   return (
@@ -15,14 +16,23 @@ export default function Home() {
           style={{
             width: "100%",
             height: "auto",
-            objectFit: 'cover'
+            objectFit: "cover",
           }}
           priority
         />
         <span className={styles.span} />
 
         <div className={styles.p}>
-          <p>⚠️ **Advertencia:** Esta aplicación puede revelar presencias que no son visibles a simple vista. Usa bajo tu propio riesgo. No nos hacemos responsables de los posibles encuentros paranormales que puedas experimentar. 👻</p>
+          <h1>SpectralVision</h1>
+
+          <p>
+            ⚠️ **Advertencia:** Esta aplicación puede revelar presencias que no
+            son visibles a simple vista. Usa bajo tu propio riesgo. No nos
+            hacemos responsables de los posibles encuentros paranormales que
+            puedas experimentar. 👻
+          </p>
+
+          <button className={styles.buttonscan}>Detectar Presencias</button>
         </div>
       </main>
     </div>
