@@ -18,9 +18,9 @@ En **SpectralVision**, el usuario toma una foto usando la cámara de su disposit
 
 - **Next.js** (App Router)
 - **Cloudinary** (Almacenamiento y procesamiento de imágenes)
-- **React** (Interfaz de usuario)
+- **Openai** (Dialogos de la escena)
 - **JavaScript/TypeScript** (Lógica del proyecto)
-- **CSS/Tailwind** (Estilos)
+- **Chakra-ui** (Estilos)
 
 ## Instalación
 
