@@ -1,7 +1,8 @@
+"use client";
 import Image from "next/image";
 import styles from "./page.module.css";
-import img from "@/app/assets/bg2.png";
-import { Button } from "@chakra-ui/react";
+import img from "@/src/app/assets/bg2.png";
+import { CldUploadWidget } from "next-cloudinary";
 
 export default function Home() {
   return (
@@ -32,7 +33,11 @@ export default function Home() {
             puedas experimentar. 👻
           </p>
 
-          <button className={styles.buttonscan}>Detectar Presencias</button>
+          <CldUploadWidget signatureEndpoint="/api/sign-cloudinary-params">
+            {({ open }) => {
+              return <button onClick={() => open()} className={styles.buttonscan}>Detectar Presencias</button>;
+            }}
+          </CldUploadWidget>
         </div>
       </main>
     </div>
