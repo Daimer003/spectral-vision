@@ -1,9 +1,8 @@
 "use client";
 import Image from "next/image";
 import styles from "./page.module.css";
-import img from "@/src/app/assets/bg2.png";
+import img from "../../public/assets/bg2.png";
 import { CldUploadWidget, getCldImageUrl } from "next-cloudinary";
-import { useEffect } from "react";
 import Audio from "@/components/audio"
 
 export default function Home() {
@@ -11,7 +10,6 @@ export default function Home() {
 
   const handleTransformation = (results: any) => {
     const publicId = results.info.public_id;
-   console.log(publicId, results)
     // Definir la transformación que deseas aplicar
     const transformedImageUrl = getCldImageUrl({
       width: 600,
