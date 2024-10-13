@@ -2,9 +2,30 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import img from "@/src/app/assets/bg2.png";
-import { CldUploadWidget } from "next-cloudinary";
+import { CldUploadWidget, getCldImageUrl } from "next-cloudinary";
+import { useEffect } from "react";
+import Audio from "@/components/audio"
 
 export default function Home() {
+
+
+  const handleTransformation = (results: any) => {
+    const publicId = results.info.public_id;
+   console.log(publicId, results)
+    // Definir la transformación que deseas aplicar
+    const transformedImageUrl = getCldImageUrl({
+      width: 600,
+      height: 600,
+      src: publicId,
+      crop: "thumb",
+      tint: "100:blue:green:red",
+    });
+
+    console.log("Transformed Image URL:", transformedImageUrl);
+
+    // Aquí podrías usar la URL transformada en tu aplicación (mostrarla, enviarla a algún lugar, etc.)
+  };
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -33,12 +54,23 @@ export default function Home() {
             puedas experimentar. 👻
           </p>
 
-          <CldUploadWidget signatureEndpoint="/api/sign-cloudinary-params">
+          <CldUploadWidget
+            signatureEndpoint="/api/sign-cloudinary-params"
+            onSuccess={(results) => {
+              handleTransformation(results);  // Llamar a la función de transformación aquí
+            }}
+          >
             {({ open }) => {
-              return <button onClick={() => open()} className={styles.buttonscan}>Detectar Presencias</button>;
+              return (
+                <button onClick={() => open()} className={styles.buttonscan}>
+                  Detectar Presencias
+                </button>
+              );
             }}
           </CldUploadWidget>
         </div>
+
+        <Audio />
       </main>
     </div>
   );
