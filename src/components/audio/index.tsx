@@ -42,7 +42,7 @@ const Audio = () => {
       />
 
       <Box display="flex" alignItems="center" gap={2}>
-        <Text as="span" onClick={playAudio}>
+        <Text as="span" onClick={playAudio} color="white" textAlign="end">
           Reproduce el audio para una experiencia más inmersiva.
         </Text>
         {!isPlaying ? (
@@ -54,6 +54,7 @@ const Audio = () => {
             <IconVolumeOn size="30" />
           </button>
         )}
+        
       </Box>
     </Box>
   );
