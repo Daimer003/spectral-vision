@@ -1,20 +1,17 @@
 "use client";
-import Image from "next/image";
-import styles from "./page.module.css";
-import img from "../../public/assets/bg2.png";
-import spectreImage2 from "../../public/assets/epec.webp";
 
-import { CldUploadWidget, getCldImageUrl, CldImage } from "next-cloudinary";
+import styles from "./page.module.css";
+import { CldUploadWidget, getCldImageUrl } from "next-cloudinary";
 import Audio from "@/components/audio";
-import { Box, Button, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Card from "@/components/cards";
-const spectreImage = "espectros/xcv8q8jn9u6ewxyufoyc";
+import Layaut from "@/components/layout";
+const spectreImage = "espectros/tffiwpolmhawkgysiy7j";
 
 export default function Home() {
   const [urlTransform, setUrlTransform] = useState<string>("");
-  const navigator = useRouter();
+
 
   const handleTransformation = (results: any) => {
     const publicId = results.info.public_id;
@@ -32,13 +29,13 @@ export default function Home() {
 
           position: {
             x: 0,
-            y: 0,
+            y: 300,
             gravity: "north_west",
           },
           appliedEffects: [
             {
               multiply: false,
-              tint: "60:black:green:red", // Aplicar efectos de color si es necesario
+              tint: "40:#520000:gray:black",
             },
           ],
           effects: [
@@ -49,31 +46,15 @@ export default function Home() {
         },
       ],
       gravity: "custom", // Colocar el espectro en una posición
-      tint: "70:red:gray:black", // Aplicar efectos de color si es necesario
+      tint: "70:#520000:gray:black",
     });
 
     setUrlTransform(transformedImageUrl);
     console.log("Transformed Image URL:", transformedImageUrl);
-
-    //if(transformedImageUrl) navigator.push(transformedImageUrl)
-
-    // Aquí podrías usar la URL transformada en tu aplicación (mostrarla, enviarla a algún lugar, etc.)
   };
 
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <span className={styles.span} />
-
-        <Box
-          display="flex"
-          alignItems="center"
-          flexDir="column"
-          w="100%"
-          zIndex={10}
-          gap={10}
-          padding="20px"
-        >
+    <Layaut>
           <Box
             display="flex"
             flexDir="column"
@@ -113,11 +94,9 @@ export default function Home() {
             </CldUploadWidget>
           </Box>
 
-          {urlTransform.length > 0 && <Card image={urlTransform} />}
-        </Box>
+          {<Card image={urlTransform} />}
 
         <Audio />
-      </main>
-    </div>
+      </Layaut>
   );
 }
