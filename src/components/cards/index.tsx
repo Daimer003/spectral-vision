@@ -2,7 +2,6 @@ import { Box, Text } from "@chakra-ui/react";
 import html2canvas from "html2canvas";
 import { useRef, useState } from "react";
 
-const img = "../../../public/assets/prueba2.webp";
 
 interface CardProps {
   image: string;
@@ -52,9 +51,9 @@ const Card = ({ image }: CardProps) => {
       ref={cardRef}
     >
       <Box display="flex" w="100%" flexDir="column">
-        <Box>
+        <Box minH='250px'>
           <img
-            src="/assets/prueba2.webp"
+            src={image}
             style={{
               width: "100%",
               height: "auto",
@@ -72,7 +71,7 @@ const Card = ({ image }: CardProps) => {
             borderRadius="16px"
             p={3}
           >
-            <Text as="h3" className="title-card">
+            <Text as="h3" className="title-card ">
               {title}
             </Text>
             <Text as="p" color="white">
