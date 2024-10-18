@@ -31,7 +31,7 @@ const WarningModal = ({ isOpen, onClose }: PropsModal) => {
         onClose={offModal}
         size="2xl"
       >
-        <ModalOverlay />
+        <ModalOverlay  />
         <ModalContent bg="#030202" border="1px solid #520000">
           <Box display="flex" justifyContent="center">
             <Image

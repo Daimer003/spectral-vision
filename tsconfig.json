@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts","*.mp3", "**/*.tsx", ".next/types/**/*.ts", "src/lib/cloudinary.js"],
+  "include": ["next-env.d.ts", "**/*.ts","*.mp3", "**/*.tsx", ".next/types/**/*.ts", "src/lib/cloudinary.js", "src/app/api/history/route.js", "src/app/api/history/route.js"],
   "exclude": ["node_modules"]
 }

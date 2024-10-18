@@ -11,13 +11,14 @@ const Layaut = ({ children }: Prop) => {
       justifyContent="center"
       alignItems="center"
       width="100%"
-      height={{ base: "auto", lg: "100vh" }}
+      height='100%'
       overflow="hidden"
       position="relative"
       backgroundImage="/assets/bg2.png"
       backgroundPosition="center"
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
+      padding='40px 0'
     >
       <Box
         display="flex"
