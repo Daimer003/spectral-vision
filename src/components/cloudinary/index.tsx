@@ -32,7 +32,7 @@ const Cloudinary = () => {
           appliedEffects: [
             {
               multiply: false,
-              tint: "40:white:gray:black",
+              tint: "40:red:gray:black",
             },
           ],
           effects: [
@@ -43,7 +43,7 @@ const Cloudinary = () => {
         },
       ],
       gravity: "custom", // Colocar el espectro en una posición
-      tint: "70:white:gray:black",
+      tint: "50:red:green:gray",
     });
 
     console.log("URL TRANSFORM",transformedImageUrl)
