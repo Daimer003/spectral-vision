@@ -29,7 +29,7 @@ const Audio = ({play}:Prop) => {
   };
 
   useEffect(() => {
-    playAudio()
+   if(play) playAudio()
   }, [play])
 
   return (
@@ -50,9 +50,6 @@ const Audio = ({play}:Prop) => {
       />
 
       <Box display="flex" alignItems="center" gap={2}>
-        <Text as="span" onClick={playAudio} color="white" textAlign="end">
-          Reproduce el audio para una experiencia más inmersiva.
-        </Text>
         {!isPlaying ? (
           <button onClick={playAudio}>
             <IconVolumeOff size="30" />

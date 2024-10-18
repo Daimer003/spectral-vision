@@ -8,8 +8,7 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRef } from "react";
-import styles from "../../app/page.module.css";
-
+import ButtonPrimary from "../button";
 
 interface PropsModal {
   isOpen: any;
@@ -33,8 +32,7 @@ const WarningModal = ({ isOpen, onClose }: PropsModal) => {
         size="2xl"
       >
         <ModalOverlay />
-        <ModalContent bg="black" border="1px solid #520000">
-
+        <ModalContent bg="#030202" border="1px solid #520000">
           <Box display="flex" justifyContent="center">
             <Image
               src="/assets/gato.webp"
@@ -44,7 +42,7 @@ const WarningModal = ({ isOpen, onClose }: PropsModal) => {
             />
           </Box>
 
-          <ModalBody>
+          <ModalBody color="white">
             ⚠️ Atención: Esta aplicación no solo capta imágenes… a veces, lo que
             muestra podría estar más cerca de lo que crees. Si decides seguir
             adelante, lo haces bajo tu propio riesgo. No respondemos por sombras
@@ -54,9 +52,9 @@ const WarningModal = ({ isOpen, onClose }: PropsModal) => {
           </ModalBody>
 
           <ModalFooter>
-            <button className={styles.buttonscan} style={{marginTop:'10px'}} onClick={onClose}>
-              Acepto el encuentro paranormal.
-            </button>
+            <ButtonPrimary onClick={onClose}>
+              Acepto el encuentro paranormal
+            </ButtonPrimary>
           </ModalFooter>
         </ModalContent>
       </Modal>

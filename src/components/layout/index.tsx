@@ -1,5 +1,4 @@
 import { Box } from "@chakra-ui/react";
-import styles from "../../app/page.module.css";
 
 interface Prop {
   children: any;
@@ -20,7 +19,18 @@ const Layaut = ({ children }: Prop) => {
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
     >
-      <span className={styles.span} />
+      <Box
+        display="flex"
+        w="100%"
+        height="100%"
+        content=""
+        top={0}
+        left={0}
+        position="absolute"
+        bg="rgba(0,0,0, .9)"
+        zIndex={5}
+      />
+
       <Box
         display="flex"
         alignItems="center"

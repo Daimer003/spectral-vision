@@ -1,7 +1,8 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Button, Text } from "@chakra-ui/react";
 import html2canvas from "html2canvas";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
+import { useChat } from "ai/react";
 
 interface CardProps {
   image: string;
@@ -9,30 +10,47 @@ interface CardProps {
 
 const Card = ({ image }: CardProps) => {
   const cardRef = useRef<any>(null);
+  const myDivRef = useRef<HTMLDivElement>(null);
+
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const { messages, handleSubmit, setInput, input, isLoading } = useChat({
+    api: "/api/history", // Asegúrate de que esta ruta esté correctamente configurada
+  });
 
-  const title = "Titulo de la historia";
-
+  //Captura el componente para comvertirlo a una imagen
   const handleShare = async () => {
     const canvas = await html2canvas(cardRef.current, {
-      useCORS: true, // Asegúrate de que los recursos de imagen se carguen correctamente
-      allowTaint: true, // Permitir que las imágenes taint, útil si hay recursos de dominios cruzados
+      useCORS: true,
+      allowTaint: true,
     });
     const dataUrl = canvas.toDataURL("image/png");
 
     // Crear un enlace para descargar la imagen
     const link = document.createElement("a");
     link.href = dataUrl;
-    link.download = "card-image.png"; // Nombre del archivo descargado
-    document.body.appendChild(link); // Añadir el enlace al DOM
-    link.click(); // Simular un clic en el enlace
-    document.body.removeChild(link); // Eliminar el enlace del DOM
+    link.download = "card-image.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   // Esta función se llama cuando la imagen se ha cargado
   const handleImageLoad = () => {
     setIsImageLoaded(true);
+    console.log("se llamo");
+    // Crear un evento de formulario simulado
+    const fakeEvent = new Event("submit", { bubbles: true, cancelable: true });
+    // Simular el envío del formulario
+    const formElement = document.createElement("form");
+    formElement.dispatchEvent(fakeEvent);
+    handleSubmit(fakeEvent as unknown as React.FormEvent<HTMLFormElement>);
   };
+
+  useEffect(() => {
+    const prompt =
+      "Genera una historia de un espectro que trasmita terror, de no más de 150 caracteres";
+    setInput(prompt);
+  }, [handleSubmit, setInput]);
 
   return (
     <Box
@@ -51,7 +69,7 @@ const Card = ({ image }: CardProps) => {
       ref={cardRef}
     >
       <Box display="flex" w="100%" flexDir="column">
-        <Box minH='250px'>
+        <Box minH="332px">
           <img
             src={image}
             style={{
@@ -66,26 +84,30 @@ const Card = ({ image }: CardProps) => {
         <Box w="100%" padding={3} p={3}>
           <Box
             w="100%"
-            height="100%"
+            minH='140px'
             bg="rgba(0,0,0, .9)"
             borderRadius="16px"
             p={3}
+            ref={myDivRef}
           >
             <Text as="h3" className="title-card ">
-              {title}
+              Cloudinary
             </Text>
             <Text as="p" color="white">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-              et pariatur repellat qui ad dignissimos vero nemo. Tenetur velit
-              odio distinctio, ex corporis culpa? Sit vel porro distinctio
-              repellat rerum?
+              {messages
+                .filter((m) => m.role == "assistant")
+                .map((m) => (
+                  <Box key={m.id}>{m.content}</Box>
+                ))}
             </Text>
           </Box>
         </Box>
       </Box>
 
-      {true&& (
-        <button onClick={handleShare} style={{color:'white'}}>Descargar como Imagen</button>
+      {isImageLoaded && (
+        <Button onClick={() => handleShare()} margin={3} bg="black">
+          Descargar como Imagen
+        </Button>
       )}
     </Box>
   );
