@@ -25,7 +25,7 @@ const Cloudinary = () => {
           height: 400,
 
           position: {
-            x: 0,
+            x: 100,
             y: 300,
             gravity: "north_west",
           },
@@ -37,7 +37,7 @@ const Cloudinary = () => {
           ],
           effects: [
             {
-              opacity: 15,
+              opacity: 30,
             },
           ],
         },
@@ -46,7 +46,6 @@ const Cloudinary = () => {
       tint: "50:red:green:gray",
     });
 
-    console.log("URL TRANSFORM",transformedImageUrl)
     setUrlTransform(transformedImageUrl);
   };
 
