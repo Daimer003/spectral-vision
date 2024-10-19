@@ -14,7 +14,7 @@ const Layaut = ({ children }: Prop) => {
       height='100%'
       overflow="hidden"
       position="relative"
-      backgroundImage="/assets/bg2.png"
+      backgroundImage="/assets/bg-spectral.webp"
       backgroundPosition="center"
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
