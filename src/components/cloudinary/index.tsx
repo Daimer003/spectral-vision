@@ -25,7 +25,7 @@ const Cloudinary = () => {
           height: 400,
 
           position: {
-            x: 100,
+            x: 50,
             y: 300,
             gravity: "north_west",
           },

@@ -8,7 +8,7 @@ export const IconVolumeOn = ({ size }: PropsIcons) => (
     width={`${size}`}
     height={`${size}`}
     viewBox="0 0 24 24"
-    fill="none"
+    fill="white"
     stroke="currentColor"
     strokeWidth={1}
     strokeLinecap="round"
@@ -28,7 +28,7 @@ export const IconVolumeOff = ({ size }: PropsIcons) => (
     width={`${size}`}
     height={`${size}`}
     viewBox="0 0 24 24"
-    fill="none"
+    fill="white"
     stroke="currentColor"
     strokeWidth={1}
     strokeLinecap="round"
