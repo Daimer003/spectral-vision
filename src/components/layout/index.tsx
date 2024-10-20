@@ -11,13 +11,13 @@ const Layaut = ({ children }: Prop) => {
       justifyContent="center"
       alignItems="center"
       width="100%"
-      height='100%'
+      height='100vh'
       overflow="hidden"
       position="relative"
       backgroundImage="/assets/bg-spectral.webp"
       backgroundPosition="center"
       backgroundRepeat="no-repeat"
-      backgroundSize="cover"
+      backgroundSize="auto"
       padding='40px 0'
     >
       <Box

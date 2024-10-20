@@ -72,9 +72,18 @@ const Cloudinary = () => {
       >
         {({ open }) => {
           return (
-            <ButtonPrimary onClick={() => open()}>
-              Detectar Presencias
-            </ButtonPrimary>
+            <Box
+              display="flex"
+              justifyContent="center"
+              w="100%"
+              position="absolute"
+              bottom={0}
+              padding={3}
+            >
+              <ButtonPrimary onClick={() => open()}>
+                Detectar Presencias
+              </ButtonPrimary>
+            </Box>
           );
         }}
       </CldUploadWidget>
@@ -82,7 +91,7 @@ const Cloudinary = () => {
       {urlTransform.length > 0 ? (
         <Card image={urlTransform} />
       ) : (
-        <Box w="100%" maxW="500px" borderRadius="20px">
+        <Box w="100%" maxW="700px" borderRadius="20px">
           <img
             src="/assets/image5.webp"
             style={{

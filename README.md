@@ -29,3 +29,7 @@ En **SpectralVision**, el usuario toma una foto usando la cámara de su disposit
    ```bash
    git clone https://github.com/tu-usuario/spectralvision.git
    cd spectralvision
+
+## Instalación
+
+2. Agrega las variables env => .env.example

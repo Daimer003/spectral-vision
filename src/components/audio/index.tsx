@@ -56,7 +56,7 @@ const Audio = ({play}:Prop) => {
           </button>
         ) : (
           <button onClick={pauseAudio}>
-            <IconVolumeOn size="30" />
+            <IconVolumeOn size="30"  />
           </button>
         )}
         

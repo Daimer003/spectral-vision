@@ -1,8 +1,9 @@
-import { Box, Button, Spinner, Text } from "@chakra-ui/react";
+import { Box, Spinner, Text } from "@chakra-ui/react";
 import html2canvas from "html2canvas";
 import { useEffect, useRef, useState } from "react";
 import { useChat } from "ai/react";
 import { uploadImageToCloudinary } from "@/utils/uploadImage";
+import FooterCard from "./footerCard";
 
 interface CardProps {
   image: string;
@@ -11,14 +12,15 @@ interface CardProps {
 const Card = ({ image }: CardProps) => {
   const cardRef = useRef<any>(null);
   const myDivRef = useRef<HTMLDivElement>(null);
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const [urlShare, setUrlShare] = useState<string>("");
-  const { messages, handleSubmit, setInput, isLoading } = useChat({
-    api: "/api/history", // Asegúrate de que esta ruta esté correctamente configurada
+  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
+  const [urlShare, setUrlShare] = useState<boolean>(false);
+  const { messages, handleSubmit, setInput, input } = useChat({
+    api: "/api/history",
   });
 
   //Captura el componente para comvertirlo a una imagen
   const handleShare = async () => {
+    setUrlShare(true);
     const canvas = await html2canvas(cardRef.current, {
       useCORS: true,
       allowTaint: true,
@@ -29,7 +31,12 @@ const Card = ({ image }: CardProps) => {
       if (blob) {
         // Llamar a la función que sube la imagen a Cloudinary
         const res = await uploadImageToCloudinary(blob);
-        setUrlShare(res);
+      
+        // Abrir la URL de la imagen en una nueva pestaña
+        if (res) {
+          setUrlShare(false);
+          window.open(res, "_blank");
+        }
       }
     }, "image/png");
   };
@@ -43,26 +50,21 @@ const Card = ({ image }: CardProps) => {
     const formElement = document.createElement("form");
     formElement.dispatchEvent(fakeEvent);
     handleSubmit(fakeEvent as unknown as React.FormEvent<HTMLFormElement>);
+    handleShare();
   };
 
+  //Inicia el contexto de la historia
   useEffect(() => {
     const prompt =
       "Genera una historia de un espectro que trasmita terror, de no más de 150 caracteres, la historias siempre debe ser diferente a la anterior.";
     setInput(prompt);
   }, [handleSubmit, setInput]);
 
-  //Cuando la imagen y el texto ya se cargaron guardo en cloudinary la imagen
-  useEffect(() => {
-    if (isImageLoaded && messages) {
-      handleShare();
-    }
-  }, [isImageLoaded, isLoading]);
-
   return (
     <Box
       display="flex"
       w="100%"
-      maxW="500px"
+      maxW="420px"
       flexDir="column"
       bg="#000000"
       borderRadius="20px"
@@ -73,6 +75,7 @@ const Card = ({ image }: CardProps) => {
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
       ref={cardRef}
+      marginTop={10}
     >
       <Box display="flex" w="100%" flexDir="column">
         <Box
@@ -80,22 +83,30 @@ const Card = ({ image }: CardProps) => {
           w="100%"
           alignItems="center"
           justifyContent="center"
-          minH={{ base: "auto", md: "332px" }}
+          minH={{ base: "auto", md: "280px" }}
+          position="relative"
         >
           <img
             src={image}
             style={{
               width: "100%",
               height: "auto",
-              aspectRatio: "100px",
               objectFit: "cover",
+              zIndex: "5",
             }}
             onLoad={handleImageLoad}
             alt="Card Image"
           />
+
           {!isImageLoaded && (
-            <Box w="50px" height="50px">
-              <Spinner color="white" size="xl" />
+            <Box
+              display="flex"
+              w="60px"
+              h="60px"
+              position="absolute"
+              zIndex={10}
+            >
+              <Spinner size="xl" />
             </Box>
           )}
         </Box>
@@ -123,73 +134,7 @@ const Card = ({ image }: CardProps) => {
         </Box>
       </Box>
 
-      <Box
-        display="flex"
-        w="100%"
-        h="60px"
-        alignItems="center"
-        justifyContent="center"
-        gap={2}
-        padding="10px 20px"
-        bg="#000000ba"
-      >
-        <Box
-          display="flex"
-          alignItems="center"
-          maxW="300px"
-          w="100%"
-          h="auto"
-          gap="5px"
-        >
-          <img
-            src="https://res.cloudinary.com/diccp2984/image/upload/v1725981015/samples/cloudinary-icon.png"
-            style={{
-              width: "40px",
-              height: "auto",
-            }}
-            alt="logo de cloudinay"
-          />
-          <Text
-            fontSize={{ base: "10px", md: "lg" }}
-            as="span"
-            color="white"
-            fontWeight="600"
-          >
-            Cloudinary
-          </Text>
-        </Box>
-        <Box
-          display="flex"
-          alignItems="center"
-          maxW="300px"
-          w="100%"
-          h="auto"
-          gap="5px"
-        >
-          <img
-            src="https://res.cloudinary.com/diccp2984/image/upload/v1729367628/logo/m4xnrjb9b6ygw83sqnq0.png"
-            style={{
-              width: "40px",
-              height: "auto",
-            }}
-            alt="logo de cloudinay"
-          />
-          <Text
-            fontSize={{ base: "10px", md: "lg" }}
-            as="span"
-            color="white"
-            fontWeight="600"
-          >
-            MiduDev
-          </Text>
-        </Box>
-        <Box w="100%">
-          <Button as="a" href={urlShare} target="_blank" w="100%">
-            {" "}
-            Compartir{" "}
-          </Button>
-        </Box>
-      </Box>
+      <FooterCard handleShare={handleShare} urlShare={urlShare} />
     </Box>
   );
 };
