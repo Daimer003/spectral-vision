@@ -16,6 +16,7 @@ const ButtonPrimary = ({ children, onClick }: PropsButton) => {
       _hover="none"
       _focus="none"
       border="none"
+      color="white"
     >
       <Box
         display="flex"
