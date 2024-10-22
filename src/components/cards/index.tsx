@@ -18,6 +18,9 @@ const Card = ({ image }: CardProps) => {
     api: "/api/history",
   });
 
+  const user = localStorage.getItem("User");
+  const prompt = `Genera una historia de un espectro que transmita terror, de no más de 150 caracteres, la historias siempre debe ser diferente a la anterior. usa el siguiente nombre en la historia ${user}`;
+
   //Captura el componente para comvertirlo a una imagen
   const handleShare = async () => {
     setUrlShare(true);
@@ -31,7 +34,7 @@ const Card = ({ image }: CardProps) => {
       if (blob) {
         // Llamar a la función que sube la imagen a Cloudinary
         const res = await uploadImageToCloudinary(blob);
-      
+
         // Abrir la URL de la imagen en una nueva pestaña
         if (res) {
           setUrlShare(false);
@@ -55,8 +58,6 @@ const Card = ({ image }: CardProps) => {
 
   //Inicia el contexto de la historia
   useEffect(() => {
-    const prompt =
-      "Genera una historia de un espectro que trasmita terror, de no más de 150 caracteres, la historias siempre debe ser diferente a la anterior.";
     setInput(prompt);
   }, [handleSubmit, setInput]);
 

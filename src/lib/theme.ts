@@ -21,21 +21,21 @@ const styles = {
                 WebkitOverflowScrolling: "touch",
             },
             "::-webkit-scrollbar": {
-                display: "none", // Ocultar scrollbar en navegadores basados en WebKit
+                display: "none", 
                 width: "0px",
-                background: "transparent",  // Hides scrollbar for WebKit browsers
+                background: "transparent", 
             },
             "::-webkit-scrollbar-thumb": {
                 background: "transparent",
             },
             "*": {
-                scrollbarWidth: "none",  // Hides scrollbar for Firefox
-                msOverflowStyle: "none", // Hides scrollbar for Internet Explorer and Edge
+                scrollbarWidth: "none", 
+                msOverflowStyle: "none",
             },
             "#__next": {
-                height: "100%", // Asegura que el contenedor de Next.js ocupe toda la altura
-                overflowY: "scroll", // Permitir scroll dentro de la aplicación
-                '-webkit-overflow-scrolling': 'touch', // Suaviza el desplazamiento en dispositivos táctiles
+                height: "100%", 
+                overflowY: "scroll", 
+                '-webkit-overflow-scrolling': 'touch',
             }
         }
     })
@@ -49,7 +49,7 @@ const components = {
                     _focusWithin: {
                         label: {
                             ...activeLabelStyles,
-                            transform: "scale(0.85) translateY(-45px)", // Mantener la etiqueta flotando en enfoque
+                            transform: "scale(0.85) translateY(-45px)",
                         }
                     },
                     label: {
@@ -79,29 +79,6 @@ const components = {
                 borderRadius: '50px',
                 position: 'relative',
                 transition: '.3s ease-in-out',
-                zIndex: 0,
-                _hover: {},
-            }),
-            buttonSecondary: () => ({
-                bg: 'linear-gradient(90deg, #842EF5 0%, #F6C8FF 100%)',
-                color: '#ffffff',
-                fontSize: '14px',
-                borderRadius: '50px',
-                position: 'relative',
-                transition: '.3s ease-in-out',
-               // border: '1px solid gray',
-                zIndex: 0,
-                _hover: {},
-            }),
-
-            button: () => ({
-                bg: '#01DBE7',
-                color: '#ffffff',
-                fontSize: '14px',
-                borderRadius: '50px',
-                position: 'relative',
-                transition: '.3s ease-in-out',
-               // border: '1px solid gray',
                 zIndex: 0,
                 _hover: {},
             }),

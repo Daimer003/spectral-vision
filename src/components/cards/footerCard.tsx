@@ -42,6 +42,7 @@ const FooterCard = ({ handleShare, urlShare }: UrlProp) => {
           Cloudinary
         </Text>
       </Box>
+
       <Box
         display="flex"
         alignItems="center"
@@ -67,6 +68,7 @@ const FooterCard = ({ handleShare, urlShare }: UrlProp) => {
           MiduDev
         </Text>
       </Box>
+
       <Box w="100%">
         <Button
           onClick={handleShare}

@@ -37,7 +37,7 @@ const Cloudinary = () => {
           ],
           effects: [
             {
-              opacity: 30,
+              opacity: 20,
             },
           ],
         },
@@ -77,7 +77,7 @@ const Cloudinary = () => {
               justifyContent="center"
               w="100%"
               position="absolute"
-              bottom={0}
+              bottom={10}
               padding={3}
             >
               <ButtonPrimary onClick={() => open()}>

@@ -2,37 +2,38 @@ import { Box, Button } from "@chakra-ui/react";
 
 interface PropsButton {
   children: any;
-  onClick: () => void;
+  onClick: () => void,
+  isDisabled?: boolean
 }
 
-const ButtonPrimary = ({ children, onClick }: PropsButton) => {
+const ButtonPrimary = ({ children, onClick, isDisabled }: PropsButton) => {
   return (
     <Button
-      w="auto"
-      h="auto"
+      w="100%"
+      maxW="390px"
+      h='70px'
       onClick={onClick}
       bg="transparent"
       borderRadius="50px"
-      _hover="none"
-      _focus="none"
       border="none"
       color="white"
+      isDisabled={isDisabled}
+      _hover={{
+        color: "var(--color-button)",
+      }}
     >
       <Box
         display="flex"
         alignItems="center"
         justifyContent="center"
-        w="360px"
-        h="47px"
-        padding={3}
+        w="100%"
+        h="55px"
         backgroundImage="/assets/boton.webp"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
+        objectFit='cover'
         fontSize={{ base: "xs", md: "md" }}
-        _hover={{
-            color: "var(--color-button)"
-        }}
       >
         {children}
       </Box>

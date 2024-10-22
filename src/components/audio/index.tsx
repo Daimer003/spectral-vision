@@ -1,12 +1,12 @@
 import { IconVolumeOff, IconVolumeOn } from "@/utils/icons";
-import { Box, Text } from "@chakra-ui/react";
+import { Box} from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 
 interface Prop {
-  play: boolean
+  play: boolean;
 }
 
-const Audio = ({play}:Prop) => {
+const Audio = ({ play }: Prop) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -29,8 +29,8 @@ const Audio = ({play}:Prop) => {
   };
 
   useEffect(() => {
-   if(play) playAudio()
-  }, [play])
+    if (play) playAudio();
+  }, [play]);
 
   return (
     <Box
@@ -56,10 +56,9 @@ const Audio = ({play}:Prop) => {
           </button>
         ) : (
           <button onClick={pauseAudio}>
-            <IconVolumeOn size="30"  />
+            <IconVolumeOn size="30" />
           </button>
         )}
-        
       </Box>
     </Box>
   );

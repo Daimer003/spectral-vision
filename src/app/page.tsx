@@ -44,7 +44,9 @@ export default function Home() {
           borderRadius="20px"
           zIndex={99}
         >
-          <Text as="h1" className="title" fontSize={{base: "4xl", md: "6xl" }}>SpectralVision</Text>
+          <Text as="h1" className="title" fontSize={{ base: "4xl", md: "6xl" }}>
+            SpectralVision
+          </Text>
 
           <Text as="p" textAlign="center" color="white">
             ⚠️ **Advertencia:** Esta aplicación puede revelar presencias que no

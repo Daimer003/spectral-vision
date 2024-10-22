@@ -6,9 +6,10 @@ import {
   ModalBody,
   Box,
   Text,
+  Input,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import ButtonPrimary from "../button";
 
 interface PropsModal {
@@ -17,12 +18,20 @@ interface PropsModal {
   onOpen: any;
 }
 
-const WarningModal = ({ isOpen, onClose }: PropsModal) => {
+const WarningModal = ({ isOpen, onClose,  }: PropsModal) => {
+  const [name, setName] = useState<string>("");
   const finalRef = useRef(null);
 
   const offModal = () => {
     console.log("Acepte la condiciones");
   };
+
+  //Obtiene el valor del input y lo guarda en el localStorange
+  const hanledOnchenge = (event: any) => 
+  {
+    setName(event?.target.value);
+    localStorage.setItem('User', event?.target.value)
+  }
 
   return (
     <>
@@ -51,7 +60,6 @@ const WarningModal = ({ isOpen, onClose }: PropsModal) => {
             inesperadas que podrías invitar sin querer. Usa con cuidado… no
             digas que no te lo advertimos. 🕯️👁️‍🗨️
             <Box display="flex" justifyContent="center" gap={3} marginTop={3}>
-
               <Box display="flex" alignItems="center" h="auto" gap="5px">
                 <img
                   src="https://res.cloudinary.com/diccp2984/image/upload/v1725981015/samples/cloudinary-icon.png"
@@ -90,10 +98,19 @@ const WarningModal = ({ isOpen, onClose }: PropsModal) => {
                 </Text>
               </Box>
             </Box>
+            <Box w="100%" maxW="350px" margin="auto">
+              <Input
+                onChange={hanledOnchenge}
+                focusBorderColor="gray"
+                placeholder="Ingresa un nombre"
+                borderRadius='50px'
+                marginTop={3}
+              />
+            </Box>
           </ModalBody>
 
-          <ModalFooter justifyContent="center">
-            <ButtonPrimary onClick={onClose}>
+          <ModalFooter justifyContent="center" p={0}>
+            <ButtonPrimary onClick={onClose} isDisabled={name.length <= 0}>
               Acepto el encuentro paranormal
             </ButtonPrimary>
           </ModalFooter>

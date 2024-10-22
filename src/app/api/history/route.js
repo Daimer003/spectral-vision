@@ -9,9 +9,6 @@ const openai = new OpenAI({
 // Definir la función para manejar la solicitud POST
 export async function POST(req) {
     try {
-        console.log('Llamando API');
-        
-        // Parsear el cuerpo de la solicitud
         const { messages } = await req.json();
 
         // Llamada al modelo de OpenAI para obtener un streaming de chat
@@ -25,7 +22,6 @@ export async function POST(req) {
         // Convertir la respuesta a un stream amigable (ReadableStream)
         const stream = OpenAIStream(response);
 
-        // Retornar el stream como respuesta directamente
         return new Response(stream, {
             headers: { 'Content-Type': 'text/event-stream' },
         });

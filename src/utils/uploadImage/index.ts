@@ -1,12 +1,9 @@
 
-
 const url: string = process.env.NEXT_PUBLIC_CLOUDINARY_API as string
 const cloudName: string = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME as string
 const version: string = process.env.NEXT_PUBLIC_CLOUDINARY_VERSION as string
 const uploadPreset: string = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET as string
 const apiKey: string = process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY as string
-
-
 
 
 export const uploadImageToCloudinary = async (imageBlob: Blob) => {
