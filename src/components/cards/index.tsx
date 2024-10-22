@@ -14,12 +14,13 @@ const Card = ({ image }: CardProps) => {
   const myDivRef = useRef<HTMLDivElement>(null);
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
   const [urlShare, setUrlShare] = useState<boolean>(false);
-  const { messages, handleSubmit, setInput, input } = useChat({
-    api: "/api/history",
-  });
 
   const user = localStorage.getItem("User");
   const prompt = `Genera una historia de un espectro que transmita terror, de no más de 150 caracteres, la historias siempre debe ser diferente a la anterior. usa el siguiente nombre en la historia ${user}`;
+
+  const { messages, handleSubmit, setInput } = useChat({
+    api: "/api/history",
+  });
 
   //Captura el componente para comvertirlo a una imagen
   const handleShare = async () => {

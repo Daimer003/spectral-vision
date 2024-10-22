@@ -27,8 +27,7 @@ const WarningModal = ({ isOpen, onClose,  }: PropsModal) => {
   };
 
   //Obtiene el valor del input y lo guarda en el localStorange
-  const hanledOnchenge = (event: any) => 
-  {
+  const hanledOnchenge = (event: any) => {
     setName(event?.target.value);
     localStorage.setItem('User', event?.target.value)
   }

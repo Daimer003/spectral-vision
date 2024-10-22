@@ -8,38 +8,31 @@ const apiKey: string = process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY as string
 
 export const uploadImageToCloudinary = async (imageBlob: Blob) => {
 
-    console.log({
-        url,
-        cloudName,
-        version,uploadPreset,
-        apiKey
-    })
-
-    // Obtener la firma desde tu backend
-    const paramsToSign = {
-        timestamp: Math.floor(Date.now() / 1000),
-        upload_preset: uploadPreset, // Define tu preset aquí
-    };
-
-    const signatureResponse = await fetch("/api/sign-cloudinary-params", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ paramsToSign }),
-    });
-
-    const { signature } = await signatureResponse.json();
-
-    // Crear el FormData con la imagen y los parámetros
-    const formData = new FormData();
-    formData.append("file", imageBlob);
-    formData.append("upload_preset", paramsToSign.upload_preset);
-    formData.append("timestamp", paramsToSign.timestamp.toString());
-    formData.append("signature", signature);
-    formData.append("api_key", apiKey);
-
     try {
+        // Obtener la firma desde tu backend
+        const paramsToSign = {
+            timestamp: Math.floor(Date.now() / 1000),
+            upload_preset: uploadPreset, // Define tu preset aquí
+        };
+
+        const signatureResponse = await fetch("/api/sign-cloudinary-params", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ paramsToSign }),
+        });
+
+        const { signature } = await signatureResponse.json();
+
+        // Crear el FormData con la imagen y los parámetros
+        const formData = new FormData();
+        formData.append("file", imageBlob);
+        formData.append("upload_preset", paramsToSign.upload_preset);
+        formData.append("timestamp", paramsToSign.timestamp.toString());
+        formData.append("signature", signature);
+        formData.append("api_key", apiKey);
+
         const response = await fetch(
             `${url}/${version}/${cloudName}/image/upload`,
             {
