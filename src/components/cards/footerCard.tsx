@@ -71,7 +71,7 @@ const FooterCard = ({ handleShare, urlShare }: UrlProp) => {
 
       <Box w="100%">
         <Button
-          onClick={handleShare}
+          onClick={handleShare }
           isLoading={urlShare}
           isDisabled={urlShare}
           w="100%"

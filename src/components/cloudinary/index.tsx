@@ -20,15 +20,14 @@ const Cloudinary = () => {
 
   const getRandomSpectreImage = () => {
     const images = [spectreImage, spectreImage2];
-    const randomIndex = Math.floor(Math.random() * images.length);
+    const randomIndex = Math.floor(Math.random() * 2);
     return images[randomIndex];
   };
 
   const handleTransformation = (results: any) => {
     const publicId = results.info.public_id;
 
-    const  { posX, posY, path } = getRandomSpectreImage()
-    console.log(posX, posY, path );
+    const { posX, posY, path } = getRandomSpectreImage();
 
     // Definir la transformación que deseas aplicar
     const transformedImageUrl = getCldImageUrl({
