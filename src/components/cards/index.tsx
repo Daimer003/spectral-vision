@@ -82,7 +82,7 @@ const Card = ({ image }: CardProps) => {
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
       ref={cardRef}
-      marginTop={10}
+      marginTop={{base: '0', md:'30px'}}
     >
       <Box display="flex" w="100%" flexDir="column">
         <Box
@@ -90,7 +90,7 @@ const Card = ({ image }: CardProps) => {
           w="100%"
           alignItems="center"
           justifyContent="center"
-          minH={{ base: "auto", md: "280px" }}
+          minH={{ base: "200px", md: "280px" }}
           position="relative"
         >
           <img

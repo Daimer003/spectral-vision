@@ -1,8 +1,9 @@
 import { CldUploadWidget, getCldImageUrl } from "next-cloudinary";
 import ButtonPrimary from "@/components/button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Box } from "@chakra-ui/react";
 import Card from "@/components/cards";
+
 
 const spectreImage = {
   path: "espectros/dadiignwxptjv4yp1cjm",
@@ -17,7 +18,6 @@ const spectreImage2 = {
 
 const Cloudinary = () => {
   const [urlTransform, setUrlTransform] = useState<string>("");
-
   const getRandomSpectreImage = () => {
     const images = [spectreImage, spectreImage2];
     const randomIndex = Math.floor(Math.random() * 2);

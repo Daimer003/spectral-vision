@@ -32,7 +32,7 @@ export default function Home() {
         p={3}
       >
         <Box
-          display="flex"
+          display={{base: 'none', md: 'flex'}}
           flexDir="column"
           justifyContent="center"
           w="100%"

@@ -18,7 +18,7 @@ const Layaut = ({ children }: Prop) => {
       backgroundPosition="center"
       backgroundRepeat="no-repeat"
       backgroundSize="auto"
-      padding='40px 20px'
+      padding='40px 0px'
     >
       <Box
         display="flex"
