@@ -1,16 +1,34 @@
 import { CldUploadWidget, getCldImageUrl } from "next-cloudinary";
 import ButtonPrimary from "@/components/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box } from "@chakra-ui/react";
 import Card from "@/components/cards";
 
-const spectreImage = "espectros/tffiwpolmhawkgysiy7j";
+const spectreImage = {
+  path: "espectros/dadiignwxptjv4yp1cjm",
+  posX: 800,
+  posY: 0,
+};
+const spectreImage2 = {
+  path: "espectros/tffiwpolmhawkgysiy7j",
+  posX: 50,
+  posY: 300,
+};
 
 const Cloudinary = () => {
   const [urlTransform, setUrlTransform] = useState<string>("");
 
+  const getRandomSpectreImage = () => {
+    const images = [spectreImage, spectreImage2];
+    const randomIndex = Math.floor(Math.random() * images.length);
+    return images[randomIndex];
+  };
+
   const handleTransformation = (results: any) => {
     const publicId = results.info.public_id;
+
+    const  { posX, posY, path } = getRandomSpectreImage()
+    console.log(posX, posY, path );
 
     // Definir la transformación que deseas aplicar
     const transformedImageUrl = getCldImageUrl({
@@ -20,13 +38,12 @@ const Cloudinary = () => {
       crop: "fill",
       overlays: [
         {
-          publicId: spectreImage,
+          publicId: path,
           width: 400,
           height: 400,
-
           position: {
-            x: 50,
-            y: 300,
+            x: posX,
+            y: posY,
             gravity: "north_west",
           },
           appliedEffects: [

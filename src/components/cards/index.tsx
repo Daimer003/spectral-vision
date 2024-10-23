@@ -13,7 +13,7 @@ const Card = ({ image }: CardProps) => {
   const cardRef = useRef<any>(null);
   const myDivRef = useRef<HTMLDivElement>(null);
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
-  const [urlShare, setUrlShare] = useState<boolean>(false);
+  const [urlShare, setUrlShare] = useState<boolean>(true);
 
   const user = localStorage.getItem("User");
   const prompt = `Genera una historia de un espectro que transmita terror, de no más de 150 caracteres, la historias siempre debe ser diferente a la anterior. usa el siguiente nombre en la historia ${user}`;
@@ -37,7 +37,7 @@ const Card = ({ image }: CardProps) => {
         const res = await uploadImageToCloudinary(blob);
 
         // Abrir la URL de la imagen en una nueva pestaña
-        if (res) {
+        if (res && !urlShare) {
           setUrlShare(false);
           window.open(res, "_blank");
         }
@@ -54,13 +54,18 @@ const Card = ({ image }: CardProps) => {
     const formElement = document.createElement("form");
     formElement.dispatchEvent(fakeEvent);
     handleSubmit(fakeEvent as unknown as React.FormEvent<HTMLFormElement>);
-    handleShare();
   };
 
   //Inicia el contexto de la historia
   useEffect(() => {
     setInput(prompt);
   }, [handleSubmit, setInput]);
+
+  useEffect(() => {
+    if (messages && isImageLoaded) {
+      setUrlShare(false);
+    }
+  }, [messages, isImageLoaded]);
 
   return (
     <Box
